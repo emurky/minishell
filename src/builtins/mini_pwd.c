@@ -12,9 +12,10 @@
 
 #include "minishell.h"
 
-bool	mini_pwd()
+bool	mini_pwd(void)
 {
 	char	*wd;
+
 	wd = NULL;
 	wd = getcwd(wd, 0);
 	if (!wd)

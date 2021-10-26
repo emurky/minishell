@@ -42,7 +42,8 @@ static void	print_env(void)
 		else
 		{
 			write(STDOUT_FILENO, "declare -x ", 11);
-			write(STDOUT_FILENO, g_shell.envp[i], eq_sign - g_shell.envp[i] + 1);
+			write(STDOUT_FILENO, g_shell.envp[i],
+				eq_sign - g_shell.envp[i] + 1);
 			printf("\"%s\"\n", eq_sign + 1);
 		}
 		i++;

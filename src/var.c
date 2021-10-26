@@ -34,23 +34,23 @@ int	get_var_name_len(char *str)
 	len = 0;
 	while (str[len] && str[len] != '=')
 		len++;
-	return(len);
+	return (len);
 }
 
 int	var_insert(char *var)
 {
 	int	index;
 	int	i;
-	int	name_len;
+	int	len;
 
 	if (g_shell.env_size == g_shell.env_capacity)
 		expand_capacity();
-	name_len = get_var_name_len(var);
+	len = get_var_name_len(var);
 	index = 0;
 	while (g_shell.envp[index]
-		&& ft_strncmp(g_shell.envp[index], var, name_len) < 0)
+		&& ft_strncmp(g_shell.envp[index], var, len) < 0)
 		index++;
-	if (g_shell.envp[index] && ft_strncmp(g_shell.envp[index], var, name_len) == 0)
+	if (g_shell.envp[index] && ft_strncmp(g_shell.envp[index], var, len) == 0)
 		free(g_shell.envp[index]);
 	else
 	{

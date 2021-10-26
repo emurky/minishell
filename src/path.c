@@ -44,7 +44,7 @@ static char	*check_relative_path(char *command)
 	return (command);
 }
 
-static char	**get_all_paths(void)
+static char	**get_all_paths(char *command)
 {
 	int	i;
 
@@ -57,7 +57,8 @@ static char	**get_all_paths(void)
 		}
 		i++;
 	}
-	return (NULL);
+	printf("minishell: %s: No such file or directory\n", command);
+	exit(127);
 }
 
 char	*full_path(char *command)
@@ -68,23 +69,17 @@ char	*full_path(char *command)
 
 	if (ft_strchr(command, '/'))
 		return (check_relative_path(command));
-	all_paths = get_all_paths();
+	all_paths = get_all_paths(command);
 	i = 0;
-	if (!all_paths)
-	{
-		printf("minishell: %s: No such file or directory\n", command);
-		exit(127);
-	}
 	while (all_paths[i] != NULL && *command)
 	{
-		full_path = ft_strjoin(all_paths[i], "/");
+		full_path = ft_strjoin(all_paths[i++], "/");
 		full_path = append_str(full_path, command);
 		if (access(full_path, F_OK | X_OK) != -1)
 		{
 			free_array(all_paths);
 			return (full_path);
 		}
-		i++;
 	}
 	free_array(all_paths);
 	printf("minishell: %s: command not found\n", command);

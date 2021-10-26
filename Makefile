@@ -14,9 +14,10 @@
 SRCSDIR			= ./src
 
 SRCS			= $(addprefix $(SRCSDIR)/, \
-				util.c parser.c ft_split_ignoring_quotes.c env_var.c \
-				minishell.c signal.c here_doc.c command.c quotes.c \
-				manage_files.c path.c here_doc_util.c var.c)
+				util.c parser.c parse_command.c ft_split_ignoring_quotes.c \
+				env_var.c minishell.c eval.c signal.c here_doc.c command.c \
+				quotes.c manage_files.c path.c here_doc_util.c var.c \
+				quotes_util.c builtins.c)
 
 SRCS			+= $(addprefix ./src/builtins/, \
 				mini_cd.c mini_pwd.c mini_echo.c mini_export.c mini_env.c \

@@ -46,3 +46,14 @@ int	create_outfile(t_file *file)
 	}
 	return (fd);
 }
+
+void	clear_file(void *ptr)
+{
+	t_file	*file;
+
+	file = ptr;
+	free(file->filename);
+	if (file->type == HERE_DOC)
+		free(file->delimiter);
+	free(file);
+}

@@ -78,5 +78,6 @@ void			ft_lstiter(t_list *lst, void (*f)(void *));
 void			ft_lstiter_with_arg(t_list *lst, void (*f)(void *, void *),
 					void *arg);
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *, void *), void *arg);
+void			*ft_free_and_return(int num_args, ...);
 
 #endif

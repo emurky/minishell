@@ -12,15 +12,6 @@
 
 #include "minishell.h"
 
-/* for debugging */
-/*
-static void print_file(void *p)
-{
-	t_file	*file = p;
-	printf("		_%s_	%u\n", file->filename, file->type);
-}
-*/
-
 void	run_command(t_cmd_line cmd, int in, int out)
 {
 	if (set_up_input(in, cmd.infiles) == -1)
@@ -33,19 +24,6 @@ void	run_command(t_cmd_line cmd, int in, int out)
 		execve(full_path(cmd.argv[0]), cmd.argv, (char *const *)g_shell.envp);
 		perror(cmd.argv[0]);
 	}
-
-	/* debugging */
-/*
-	printf("___________\n");
-	printf("	Infiles:\n");
-	ft_lstiter(cmd.infiles, print_file);
-	printf("	Outfiles:\n");
-	ft_lstiter(cmd.outfiles, print_file);
-	printf("	Argv:\n");
-	for (int j = 0; cmd.argv[j]; j++)
-		printf("		%d. _%s_\n", j, cmd.argv[j]);
-*/
-
 	if (g_shell.shell_state == FOREGROUNG_JOB)
 		exit(g_shell.exit_code);
 }

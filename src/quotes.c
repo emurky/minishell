@@ -29,33 +29,30 @@ static char	*process_single_qoutes(char *str, int *i_p)
 
 static char	*process_double_qoutes(char *str, int *i_p)
 {
-	int		i;
 	char	*cur;
 	char	*var;
 	char	*expansion;
 
-	i = *i_p;
-	str[i] = '\0';
-	str = append_str(str, str + i + 1);
-	while (str[i + 1] && str[i] != '\"')
+	str[*i_p] = '\0';
+	str = append_str(str, str + *i_p + 1);
+	while (str[*i_p + 1] && str[*i_p] != '\"')
 	{
-		if (str[i] == '$')
+		if (str[*i_p] == '$')
 		{
-			cur = str + i + 1;
-			str[i] = '\0';
+			cur = str + *i_p + 1;
+			str[*i_p] = '\0';
 			var = get_var_name(&cur);
 			expansion = expand(var);
 			str = append_str(append_str(str, expansion), cur);
-			i += ft_strlen(expansion);
+			*i_p += ft_strlen(expansion);
 			free(var);
 			free(expansion);
 		}
 		else
-			i++;
+			(*i_p)++;
 	}
-	str[i] = '\0';
-	str = append_str(str, str + i + 1);
-	*i_p = i - 1;
+	str[*i_p] = '\0';
+	str = append_str(str, str + (*i_p)-- + 1);
 	return (str);
 }
 

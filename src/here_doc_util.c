@@ -18,27 +18,25 @@ void	assign_heredoc_filename(t_parser *parser)
 	char	c;
 	t_list	*lst;
 	t_file	*file;
-	char	filename[] = "heredoc_temp_a";
+	char	filename[15];
 
-
+	ft_memcpy(filename, "heredoc_temp_a", 15);
 	i = 0;
 	c = 'a';
 	while (i < parser->num_cmd && c <= 'z')
 	{
-		lst = parser->cmd_lines[i].infiles;
+		lst = parser->cmd_lines[i++].infiles;
 		while (lst && c <= 'z')
 		{
 			file = lst->content;
 			if (file->type == HERE_DOC)
 			{
 				file->delimiter = file->filename;
-				filename[13] = c;
+				filename[13] = c++;
 				file->filename = ft_strdup(filename);
-				c++;
 			}
 			lst = lst->next;
 		}
-		i++;
 	}
 }
 

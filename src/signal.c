@@ -14,12 +14,7 @@
 
 void	sigint_handler(int sig)
 {
-	// pid_t	pid;
-	// if ((pid = fgpid(jobs)) > 0) {
-	// if (kill(-pid, SIGINT) < 0)
-	//     unix_error("kill (sigint) error");
 	(void)sig;
-
 	if (g_shell.shell_state == FOREGROUNG_JOB)
 		ft_putstr_fd("\n", STDOUT_FILENO);
 	if (g_shell.shell_state == SHELL)
@@ -29,7 +24,6 @@ void	sigint_handler(int sig)
 		rl_on_new_line();
 		rl_redisplay();
 	}
-
 	return ;
 }
 

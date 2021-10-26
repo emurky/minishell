@@ -44,6 +44,7 @@ char			*strchr_ignoring_quotes(const char *s, int c);
 unsigned int	strcspn_ignoring_quotes(const char *s, const char *charset);
 t_parser		*parse_cmd_list(char *line);
 bool			parse_cmd_line(char *line, t_cmd_line *cmd);
+char			*discard_redirections(char *line, t_cmd_line *cmd_line);
 void			discard_quotes_in_argv(char **argv);
 void			discard_quotes(char **str);
 void			expand_vars(char **str, bool quotes);
