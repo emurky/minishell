@@ -31,11 +31,11 @@ static t_file	*extract_filename(char *start, char **p_end, char c)
 		start++;
 	end = start + strcspn_ignoring_quotes(start, " <>");
 	if (start == end)
-		return (ft_free_and_return(2, file->filename, file, NULL));
+		return (ft_free_and_return(file->filename, file, NULL));
 	name = ft_substr(start, 0, end - start);
 	*p_end = end;
 	file->filename = append_str(file->filename, name);
-	return (ft_free_and_return(1, name, file));
+	return (ft_free_and_return(name, NULL, file));
 }
 
 static char	*process_redirects(char c, char *line, t_list **files)
@@ -56,11 +56,11 @@ static char	*process_redirects(char c, char *line, t_list **files)
 		result = append_str(result, end);
 		filename = extract_filename(start + 1, &end, c);
 		if (!filename)
-			return (ft_free_and_return(2, line, result, NULL));
+			return (ft_free_and_return(line, result, NULL));
 		ft_lstadd_back(files, ft_lstnew(filename));
 	}
 	result = append_str(result, end);
-	return (ft_free_and_return(1, line, result));
+	return (ft_free_and_return(line, NULL, result));
 }
 
 char	*discard_redirections(char *line, t_cmd_line *cmd_line)

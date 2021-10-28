@@ -13,17 +13,9 @@
 #include "libft.h"
 #include <stdarg.h>
 
-void	*ft_free_and_return(int num_args, ...)
+void	*ft_free_and_return(void *arg1, void *arg2, void *return_value)
 {
-	va_list	ap;
-	int		i;
-	void	*ret;
-
-	va_start(ap, num_args);
-	i = 0;
-	while (i++ < num_args)
-		free(va_arg(ap, void *));
-	ret = va_arg(ap, void *);
-	va_end(ap);
-	return (ret);
+	free(arg1);
+	free(arg2);
+	return (return_value);
 }
