@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkombu <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: emurky <emurky@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 20:58:41 by rkombu            #+#    #+#             */
-/*   Updated: 2021/09/15 20:59:00 by rkombu           ###   ########.fr       */
+/*   Updated: 2021/10/28 18:25:42 by emurky           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include <fcntl.h>
 # include <errno.h>
 # include <string.h>
-# include "../libft/libft.h"
+# include "libft.h"
 # include "parser.h"
 
 typedef enum e_state {SHELL, FOREGROUNG_JOB, HERE_DOC_READING}	t_state;
