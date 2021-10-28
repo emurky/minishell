@@ -25,17 +25,30 @@ static bool	is_numerical(char *str)
 
 static bool	check_overflow(char *str)
 {
+	int	len;
+
+	len = ft_strlen(str);
+	if (len < 19)
+		return (true);
+	if (len > 20)
+		return (false);
 	if (*str == '-')
 		return (ft_strcmp(str + 1, "9223372036854775808") <= 0);
 	if (*str == '+')
 		return (ft_strcmp(str + 1, "9223372036854775807") <= 0);
+	if (len > 19)
+		return (false);
 	return (ft_strcmp(str, "9223372036854775807") <= 0);
 }
 
 bool	mini_exit(char *argv[])
 {
 	if (!argv[1])
+	{
+		if (g_shell.shell_state == SHELL)
+			printf("exit\n");
 		exit(g_shell.exit_code);
+	}
 	if (!is_numerical(argv[1]) || !check_overflow(argv[1]))
 	{
 		if (g_shell.shell_state == SHELL)

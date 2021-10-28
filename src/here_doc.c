@@ -27,7 +27,6 @@ void	handle_heredoc(t_file *file)
 		fd = open(file->filename, O_WRONLY | O_CREAT | O_EXCL | O_TRUNC, 0600);
 		expand_here_doc(fd, file->delimiter);
 		close(fd);
-		printf("here_doc %s\n", file->filename);
 	}
 }
 
